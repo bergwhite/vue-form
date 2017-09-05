@@ -3,11 +3,7 @@
     <table class="table table-bordered table-hover">
       <thead>
           <tr>
-          <td>书名</td>
-          <td>作者</td>
-          <td>译者</td>
-          <td>出版社</td>
-          <td>出版年份</td>
+            <td v-for="headName in formListHead">{{headName}}</td>
         </tr>
       </thead>
       <tbody>
@@ -26,12 +22,7 @@
 <script>
 export default {
   name: 'formList',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  },
-  props: ['mockData']
+  props: ['mockData', 'formListHead']
 }
 </script>
 

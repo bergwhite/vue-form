@@ -1,8 +1,8 @@
 <!-- powed by bw2: https://github.com/bergwhite/vue-form -->
 <template>
   <div class="dataForm">
-    <h1 style="text-align:center">笔试题</h1>
-    <formList :mockData="parseJSON.length === 0 ? ['加载中...']: mock"></formList>
+    <h1 style="text-align:center">笔试题 @龚思凯</h1>
+    <formList :mockData="parseJSON.length === 0 ? ['加载中...']: mock" :formListHead="formListHead"></formList>
     <pageSplit :pageCount="pageCount" :pageCurrent="pageCurrent" @changePage="changePage"></pageSplit>
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
       pageCurrent: 0,
       pageNext: '',
       pagePrev: '',
-
+      formListHead: ['书名', '作者', '译者', '出版社', '出版年份']
     }
   },
   components: {
@@ -44,6 +44,7 @@ export default {
     sepcPage: function(index) {
       this.updatePageList = index
     },
+    // 匹配子组件传来的换页方法
     changePage: function(msg) {
       switch (msg.type) {
         case 'prev':
@@ -94,9 +95,11 @@ export default {
     }
   },
   mounted() {
+    // 挂载之后进行数据异步请求
     $.get('http://localhost:9999/api/book', (e) => {
-      console.log(e)
+      // 数据挂载到当前页面
       this.mockList = e.resMess
+      // 首次挂载加载第一页数据
       this.updatePageList = 0
     })
   }

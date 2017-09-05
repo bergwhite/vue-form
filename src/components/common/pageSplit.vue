@@ -23,11 +23,6 @@
 <script>
 export default {
   name: 'pageSplit',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  },
   props: ['pageCount', 'pageCurrent'],
   methods: {
     // 传递事件给父组件
@@ -45,6 +40,7 @@ export default {
     },
     // 指定页
     goToSpec(e) {
+      // 当前页面的索引
       const index = parseInt(e.srcElement.textContent) - 1
       this.$emit('changePage', {
         type: 'spec',

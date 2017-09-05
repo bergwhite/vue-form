@@ -13,10 +13,18 @@ npm run dev
 
 ```
 
-> 测试
+> 测试API
 
 ```
 
 GET http://localhost:9999/api/book
+
+```
+
+> 访问Vue项目
+
+```
+
+http://localhost:8080/
 
 ```
