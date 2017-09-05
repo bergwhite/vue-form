@@ -12,6 +12,10 @@ export default {
   name: 'app',
   components: {
     Hello
+  },
+  mounted() {
+    console.log(this.$(2333))
+    console.log('JQ works')
   }
 }
 </script>
