@@ -1,5 +1,7 @@
+<!-- powed by bw2: https://github.com/bergwhite/vue-form -->
 <template>
   <div class="dataForm">
+    <h1 style="text-align:center">笔试题</h1>
     <formList :mockData="parseJSON.length === 0 ? ['加载中...']: mock"></formList>
     <pageSplit :pageCount="pageCount" :pageCurrent="pageCurrent" @changePage="changePage"></pageSplit>
   </div>
@@ -8,7 +10,6 @@
 <script>
 import formList from './common/formList'
 import pageSplit from './common/pageSplit'
-import mock from '../assets/mock.json'
 export default {
   name: 'dataForm',
   data () {
@@ -93,8 +94,11 @@ export default {
     }
   },
   mounted() {
-    this.mockList = mock.resMess
-    this.updatePageList = 2
+    $.get('http://localhost:9999/api/book', (e) => {
+      console.log(e)
+      this.mockList = e.resMess
+      this.updatePageList = 0
+    })
   }
 }
 </script>
