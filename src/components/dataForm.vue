@@ -96,7 +96,7 @@ export default {
   },
   mounted() {
     // 挂载之后进行数据异步请求
-    $.get('http://localhost:9999/api/book', (e) => {
+    this.$.get('http://localhost:9999/api/book', (e) => {
       // 数据挂载到当前页面
       this.mockList = e.resMess
       // 首次挂载加载第一页数据
