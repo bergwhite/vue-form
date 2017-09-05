@@ -1,21 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+    <dataForm></dataForm>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+import dataForm from './components/dataForm'
 
 export default {
   name: 'app',
   components: {
-    Hello
+    dataForm
   },
   mounted() {
-    console.log(this.$(2333))
-    console.log('JQ works')
+    console.log('JQ Works: ' + (this.$(1)[0] === 1))
   }
 }
 </script>
