@@ -1,11 +1,13 @@
 <template>
   <div class="dataForm">
     <formList :mockData="parseJSON.length === 0 ? ['加载中...']: mock"></formList>
+    <pageSplit :pageCount="pageCount" :pageCurrent="pageCurrent"></pageSplit>
   </div>
 </template>
 
 <script>
 import formList from './common/formList'
+import pageSplit from './common/pageSplit'
 import mock from '../assets/mock.json'
 export default {
   name: 'dataForm',
@@ -23,7 +25,8 @@ export default {
     }
   },
   components: {
-    formList
+    formList,
+    pageSplit
   },
   computed: {
     parseJSON: {
@@ -45,6 +48,8 @@ export default {
         const mockMess = this.mockList
         // 当前页面开始的索引
         const pageFromIndex = index * listPerPage
+        // 更新最近的页面索引
+        this.pageCurrent = index
         // 统计列表的数量
         this.listAll = mockMess.length
         // 统计页面的数量
