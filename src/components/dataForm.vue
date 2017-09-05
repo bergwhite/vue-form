@@ -1,7 +1,7 @@
 <template>
   <div class="dataForm">
     <formList :mockData="parseJSON.length === 0 ? ['加载中...']: mock"></formList>
-    <pageSplit :pageCount="pageCount" :pageCurrent="pageCurrent"></pageSplit>
+    <pageSplit :pageCount="pageCount" :pageCurrent="pageCurrent" @changePage="changePage"></pageSplit>
   </div>
 </template>
 
@@ -42,6 +42,21 @@ export default {
     // 下一页方法
     sepcPage: function(index) {
       this.updatePageList = index
+    },
+    changePage: function(msg) {
+      switch (msg.type) {
+        case 'prev':
+          this.prevPage()
+          break;
+        case 'next':
+          this.nextPage()
+          break;
+        case 'spec':
+          this.sepcPage(msg.index)
+          break;
+        default:
+          break;
+      }
     }
   },
   computed: {
@@ -80,21 +95,6 @@ export default {
   mounted() {
     this.mockList = mock.resMess
     this.updatePageList = 2
-    setTimeout(() => {
-      this.prevPage()
-    }, 2000)
-    setTimeout(() => {
-      this.prevPage()
-    }, 3000)
-    setTimeout(() => {
-      this.nextPage()
-    }, 4000)
-    setTimeout(() => {
-      this.nextPage()
-    }, 5000)
-    setTimeout(() => {
-      this.prevPage()
-    }, 6000)
   }
 }
 </script>
