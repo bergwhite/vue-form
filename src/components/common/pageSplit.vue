@@ -2,7 +2,7 @@
   <div class="pageSplit">
     <nav aria-label="...">
       <ul class="pagination">
-        <li class="disabled">
+        <li :class="pageCurrent === 0 ? 'disabled' : ''">
           <span>
             <span aria-hidden="true">&laquo;</span>
           </span>
@@ -10,7 +10,7 @@
         <li :class="index === pageCurrent + 1 ? 'active' : ''" v-for="index in pageCount">
           <span>{{index}}<span class="sr-only">(current)</span></span>
         </li>
-        <li class="disabled">
+        <li :class="pageCurrent === pageCount -1 ? 'disabled' : ''">
           <span>
             <span aria-hidden="true">&raquo;</span>
           </span>

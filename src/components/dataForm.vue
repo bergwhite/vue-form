@@ -28,7 +28,24 @@ export default {
     formList,
     pageSplit
   },
+  methods: {
+    // 上一页方法
+    prevPage: function() {
+      const prev = this.pageCurrent - 1
+      prev >= 0 && (this.updatePageList = prev)
+    },
+    // 下一页方法
+    nextPage: function() {
+      const next = this.pageCurrent + 1
+      next < this.pageCount && (this.updatePageList = next)
+    },
+    // 下一页方法
+    sepcPage: function(index) {
+      this.updatePageList = index
+    }
+  },
   computed: {
+    // 动态更新列表
     parseJSON: {
       get: function() {
         return this.mock
@@ -37,6 +54,7 @@ export default {
         this.mock = data
       }
     },
+    // 根据传入的页面索引渲染相应列表
     updatePageList: {
       get: function() {
         return this.mock
@@ -61,7 +79,22 @@ export default {
   },
   mounted() {
     this.mockList = mock.resMess
-    this.updatePageList = 1
+    this.updatePageList = 2
+    setTimeout(() => {
+      this.prevPage()
+    }, 2000)
+    setTimeout(() => {
+      this.prevPage()
+    }, 3000)
+    setTimeout(() => {
+      this.nextPage()
+    }, 4000)
+    setTimeout(() => {
+      this.nextPage()
+    }, 5000)
+    setTimeout(() => {
+      this.prevPage()
+    }, 6000)
   }
 }
 </script>
